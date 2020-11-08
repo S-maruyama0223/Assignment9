@@ -15,9 +15,8 @@ class SecondViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         //列挙型の数だけのボタン作成
         for prefectrue in Prefecture.allCases{
-            let button = UIButton()
+            let button = UIButton(type: .system)
             button.setTitle(prefectrue.rawValue, for: .normal)
-            button.setTitleColor(.blue, for: .normal)
             button.frame.size = CGSize(width:70, height:40)
             button.center.x = view.frame.width / 2
             button.center.y = view.safeAreaInsets.top + (CGFloat(prefectrue.num) * button.frame.height + 50)
