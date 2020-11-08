@@ -27,6 +27,7 @@ class SecondViewController: UIViewController {
     }
     
     @objc private func selectPrerecture(_ sender:UIButton){
+        //押されたボタンのテキストから列挙型を取得してViewControllerの条件をコール
         selectedPrefecture = Prefecture(rawValue:sender.currentTitle!)
         switch selectedPrefecture {
         case .hokkaido:
