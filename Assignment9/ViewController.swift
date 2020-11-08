@@ -12,24 +12,11 @@ class ViewController: UIViewController {
     
     @IBOutlet weak private var prefectureLabel: UILabel!
     
-    @IBAction func updateToHokkaido(segue:UIStoryboardSegue){
-        self.prefectureLabel.text = Prefecture.hokkaido.rawValue
+    @IBAction func updateLabel(segue:UIStoryboardSegue){
+        let secondVC = segue.source as! SecondViewController
+        self.prefectureLabel.text = secondVC.selectedPrefecture
     }
     
-    @IBAction func updateToKanagawa(segue:UIStoryboardSegue){
-        self.prefectureLabel.text = Prefecture.kanagawa.rawValue
-    }
-    
-    @IBAction func updateToTokyo(segue:UIStoryboardSegue){
-        self.prefectureLabel.text = Prefecture.tokyo.rawValue
-    }
-    
-    @IBAction func updateToSaitama(segue:UIStoryboardSegue){
-        self.prefectureLabel.text = Prefecture.saitama.rawValue
-    }
-    
-    @IBAction func exitCancel(segue:UIStoryboardSegue){
-    }
-    
+    @IBAction func exitCancel(segue:UIStoryboardSegue){}
 }
 

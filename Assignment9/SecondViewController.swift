@@ -10,8 +10,8 @@ import UIKit
 
 class SecondViewController: UIViewController {
     
-    private(set) var selectedPrefecture:Prefecture?
-
+    private(set) var selectedPrefecture:String?
+    
     override func viewWillLayoutSubviews() {
         //列挙型の数だけのボタン作成
         for prefectrue in Prefecture.allCases{
@@ -21,28 +21,41 @@ class SecondViewController: UIViewController {
             button.frame.size = CGSize(width:70, height:40)
             button.center.x = view.frame.width / 2
             button.center.y = view.safeAreaInsets.top + (CGFloat(prefectrue.num) * button.frame.height + 50)
-            button.addTarget(self, action: #selector(selectPrerecture(_:)), for: .touchUpInside)
+            switch prefectrue {
+            case .hokkaido:
+                button.addTarget(self, action: #selector(tappedHokkaido(_:)), for: .touchUpInside)
+            case .kanagawa:
+                button.addTarget(self, action: #selector(tappedKanagawa(_:)), for: .touchUpInside)
+            case .tokyo:
+                button.addTarget(self, action: #selector(tappedTokyo(_:)), for: .touchUpInside)
+            case .saitama:
+                button.addTarget(self, action: #selector(tappedSaitama(_:)), for: .touchUpInside)
+            }
             view.addSubview(button)
         }
     }
     
-    @objc private func selectPrerecture(_ sender:UIButton){
-        //押されたボタンのテキストから列挙型を取得してViewControllerの条件をコール
-        selectedPrefecture = Prefecture(rawValue:sender.currentTitle!)
-        switch selectedPrefecture {
-        case .hokkaido:
-            performSegue(withIdentifier: "hokkaido", sender: nil)
-        case .kanagawa:
-            performSegue(withIdentifier: "kanagawa", sender: nil)
-        case .tokyo:
-            performSegue(withIdentifier: "tokyo", sender: nil)
-        case .saitama:
-            performSegue(withIdentifier: "saitama", sender: nil)
-        case .none:
-            print("did not select")
-        }
+    @objc private func tappedHokkaido(_ sender:UIButton){
+        self.selectedPrefecture = Prefecture.hokkaido.rawValue
+        performSegue()
+    }
+    @objc private func tappedKanagawa(_ sender:UIButton){
+        self.selectedPrefecture = Prefecture.kanagawa.rawValue
+        performSegue()
+    }
+    @objc private func tappedTokyo(_ sender:UIButton){
+        self.selectedPrefecture = Prefecture.tokyo.rawValue
+        performSegue()
+    }
+    @objc private func tappedSaitama(_ sender:UIButton){
+        self.selectedPrefecture = Prefecture.saitama.rawValue
+        performSegue()
     }
     
+    private func performSegue(){
+        performSegue(withIdentifier: "updateLabel",sender: nil)
+    }
+
 }
 
 enum Prefecture:String, CaseIterable{
