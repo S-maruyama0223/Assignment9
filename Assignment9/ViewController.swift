@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var prefectureLabel: UILabel!
+    @IBOutlet weak private var prefectureLabel: UILabel!
     
     @IBAction func updateToHokkaido(segue:UIStoryboardSegue){
         self.prefectureLabel.text = Prefecture.hokkaido.rawValue

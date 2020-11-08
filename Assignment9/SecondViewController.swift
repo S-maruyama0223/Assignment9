@@ -11,11 +11,9 @@ import UIKit
 class SecondViewController: UIViewController {
     
     private(set) var selectedPrefecture:Prefecture?
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+
     override func viewWillLayoutSubviews() {
+        //列挙型の数だけのボタン作成
         for prefectrue in Prefecture.allCases{
             let button = UIButton()
             button.setTitle(prefectrue.rawValue, for: .normal)
@@ -28,7 +26,7 @@ class SecondViewController: UIViewController {
         }
     }
     
-    @objc func selectPrerecture(_ sender:UIButton){
+    @objc private func selectPrerecture(_ sender:UIButton){
         selectedPrefecture = Prefecture(rawValue:sender.currentTitle!)
         switch selectedPrefecture {
         case .hokkaido:
@@ -51,7 +49,6 @@ enum Prefecture:String, CaseIterable{
     case kanagawa = "神奈川"
     case tokyo = "東京"
     case saitama = "埼玉"
-    
     
     var num: Int{
         switch self{
